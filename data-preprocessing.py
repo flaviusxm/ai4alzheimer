@@ -28,32 +28,34 @@ def find_first_img_by_dimension(folder, target_dimensions):
 
 
 def resize_image_hardcoded(img):
-    # save_image(img, "test", "original.jpg")
+    save_image(img, "test", "original.jpg")
 
-    h, w = img.shape[0], img.shape[1]
-    h_scaled, w_scaled = SCALED_DIMENSIONS[h]
+    h_old, w_old = img.shape[0], img.shape[1]
+
+    h_scaled, w_scaled = SCALED_DIMENSIONS[h_old]
     img = cv.resize(img, (w_scaled, h_scaled), interpolation=cv.INTER_CUBIC)
 
     if h_scaled != IMAGE_SIZE:
-        pad_top, pad_bottom = PAD_AMOUNT[h][0]
+        pad_top, pad_bottom = PAD_AMOUNT[h_old]
         img = cv.copyMakeBorder(img, top=pad_top, bottom=pad_bottom, left=0, right=0,
                                 borderType=cv.BORDER_CONSTANT, value=img[0, 0].tolist())
     elif w_scaled != IMAGE_SIZE:
-        pad_left, pad_right = PAD_AMOUNT[h][1]
+        pad_left, pad_right = PAD_AMOUNT[h_old]
         img = cv.copyMakeBorder(img, top=0, bottom=0, left=pad_left, right=pad_right,
                                 borderType=cv.BORDER_CONSTANT, value=img[0, 0].tolist())
 
-    # save_image(img, "test", "padded.jpg")
+    save_image(img, "test", "padded.jpg")
 
     return img
+
+
+img = cv.imread("non-dementia/non-dementia-00002.jpg")
+resize_image_hardcoded(img)
 
 
 # dimensions = ((200, 190), (180, 180), (176, 208), (496, 248))
 # file_names = find_first_img_by_dimension("moderate-dementia", dimensions)
 # print(file_names)
-
-img = cv.imread("non-dementia/non-dementia-01415.jpg")
-resize_image_hardcoded(img)
 
 # NON
 # 496x248: 06563.jpg

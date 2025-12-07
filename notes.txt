@@ -1,0 +1,35 @@
+1. DATA PREPROCESSING
+- resize the images to fit the pretrained model's image size
+- normalize pixel values to the same mean and std as the original transferred model was trained on
+
+2. DATA SPLIT
+- stratified sampling: "non" represents 61.3% of the data, so the training/validation/test sets should maintain
+the same proportion of all four classes (61.3% for "non" in all 3 sets)
+
+3. DATA AUGMENTATION
+- apply random shifts, rotations, horizontal flips
+- maybe intensity/color augmentations
+- apply more aggressive augmentation to the minority classes
+
+4. TRANSFER LEARNING
+- load a model: EfficientNetV2-S (224x224), EfficientNetV2-B3 (300x300), EfficientNetV2-M, or ConvNeXt
+- freeze the base layers (make the pre-trained network layers be non-trainable)
+- build a new head (attach custom layers to the output of the frozen base): global average pooling (GAP),
+dropout, dense, activation function
+- train only the new head with a high learning rate
+- unfreeze the mid-to-late convolutional layers and use a very SMALL learning rate. smaller rates for blocks
+closer to the input, slightly bigger (but still small) rates for the ones closer to the output
+- ImageNet: 224x224, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
+
+5. MISC
+- handle class imbalances (80k examples vs 10k examples) by using class weighting in the loss function
+- early stopping
+- model checkpointing: save model weights ONLY when the performance on the validation set improves
+
+6. INTERPRETING THE RESULTS
+- Grad-CAM to visualize which regions of the MRI the CNN is using to make its decision
+- weighted F1, confusion matrix, accuracy
+
+7. HYPERPARAMETER SELECTION
+- optimizer: Adam, RMSprop
+- batch size: small (16, 32) will take more time but can work
