@@ -1,0 +1,254 @@
+Cel mai bun model in antrenare (fara fine tuning, cu freezing si 10 epoci) a avut o acuratete maxima de 66.99% pe setul de validare. Practic, el a invatat niste pattern-uri intr-o maniera usor relevanta, sa spunem, insa performanta lasa de dorit avand in vedere complexitatea sarcinii si asemanarile vizuale intre date.
+Modelul intampina dificultati in separarea claselor de RMN, precum very-mild si mild dementia, insa pastreaza o eroare ridicata si pentru non dementia, reusind sa clasifice cu o rata de succes cel mai mare cazurile moderate de dementa.
+Scorurile de incredere sunt frecvent scazute, in general intre 30 si 55%, chiar si la predictiile corecte. Modelul face cele mai comune confuzii in cazurile very mild si mild, respectiv mild si moderate
+
+Concluzii pentru acest model:
+=> generalizare limitata;
+=> incredere scazuta in predictii;
+=> predictii cu eticheta slaba corecta si, paradoxal, predictii cu eticheta puternica gresite;
+
+
+Date din  rulari pentru a incerca o clasificare:
+
+[1]  True: very-mild  | Pred: mild       | Conf: 46.83% | File: very-mild-dementia-21845.jpg
+[2]  True: non        | Pred: moderate   | Conf: 34.32% | File: non-dementia-74192.jpg
+[3]  True: mild       | Pred: mild       | Conf: 46.47% | File: mild-dementia-11731.jpg
+[4]  True: moderate   | Pred: moderate   | Conf: 87.84% | File: moderate-dementia-07340.jpg
+[5]  True: mild       | Pred: moderate   | Conf: 46.60% | File: mild-dementia-02632.jpg
+[6]  True: non        | Pred: non        | Conf: 47.86% | File: non-dementia-43501.jpg
+[7]  True: very-mild  | Pred: mild       | Conf: 42.21% | File: very-mild-dementia-16064.jpg
+[8]  True: very-mild  | Pred: mild       | Conf: 30.95% | File: very-mild-dementia-12460.jpg
+[9]  True: non        | Pred: moderate   | Conf: 40.10% | File: non-dementia-69345.jpg
+[10] True: non        | Pred: mild       | Conf: 42.65% | File: non-dementia-40492.jpg
+[11] True: moderate   | Pred: moderate   | Conf: 50.03% | File: moderate-dementia-04560.jpg
+[12] True: very-mild  | Pred: mild       | Conf: 39.00% | File: very-mild-dementia-08714.jpg
+[13] True: mild       | Pred: moderate   | Conf: 42.10% | File: mild-dementia-12717.jpg
+[14] True: non        | Pred: moderate   | Conf: 36.52% | File: non-dementia-63109.jpg
+[15] True: very-mild  | Pred: mild       | Conf: 56.62% | File: very-mild-dementia-22264.jpg
+[16] True: non        | Pred: mild       | Conf: 38.12% | File: non-dementia-29442.jpg
+[17] True: mild       | Pred: mild       | Conf: 35.80% | File: mild-dementia-00615.jpg
+[18] True: moderate   | Pred: moderate   | Conf: 72.16% | File: moderate-dementia-08776.jpg
+[19] True: very-mild  | Pred: mild       | Conf: 37.14% | File: very-mild-dementia-02213.jpg
+[20] True: moderate   | Pred: moderate   | Conf: 84.49% | File: moderate-dementia-01429.jpg
+[21] True: non        | Pred: mild       | Conf: 47.36% | File: non-dementia-56064.jpg
+[22] True: mild       | Pred: moderate   | Conf: 89.08% | File: mild-dementia-05300.jpg
+[23] True: very-mild  | Pred: mild       | Conf: 34.20% | File: very-mild-dementia-07188.jpg
+[24] True: mild       | Pred: mild       | Conf: 74.23% | File: mild-dementia-05193.jpg
+[25] True: non        | Pred: moderate   | Conf: 60.26% | File: non-dementia-78708.jpg
+[26] True: non        | Pred: non        | Conf: 43.76% | File: non-dementia-21066.jpg
+[27] True: non        | Pred: non        | Conf: 44.68% | File: non-dementia-47750.jpg
+[28] True: very-mild  | Pred: moderate   | Conf: 26.59% | File: very-mild-dementia-15288.jpg
+[29] True: moderate   | Pred: moderate   | Conf: 92.53% | File: moderate-dementia-02375.jpg
+[30] True: moderate   | Pred: moderate   | Conf: 81.18% | File: moderate-dementia-08881.jpg
+[31] True: mild       | Pred: moderate   | Conf: 40.86% | File: mild-dementia-08954.jpg
+[32] True: very-mild  | Pred: moderate   | Conf: 74.11% | File: very-mild-dementia-06310.jpg
+[33] True: moderate   | Pred: moderate   | Conf: 89.33% | File: moderate-dementia-07633.jpg
+[34] True: very-mild  | Pred: mild       | Conf: 40.39% | File: very-mild-dementia-13950.jpg
+[35] True: mild       | Pred: mild       | Conf: 50.87% | File: mild-dementia-10455.jpg
+[36] True: very-mild  | Pred: very-mild  | Conf: 45.63% | File: very-mild-dementia-23163.jpg
+[37] True: moderate   | Pred: moderate   | Conf: 99.27% | File: moderate-dementia-07938.jpg
+[38] True: non        | Pred: moderate   | Conf: 53.57% | File: non-dementia-36632.jpg
+[39] True: very-mild  | Pred: non        | Conf: 31.37% | File: very-mild-dementia-07406.jpg
+[40] True: non        | Pred: non        | Conf: 54.12% | File: non-dementia-49009.jpg
+[41] True: non        | Pred: non        | Conf: 54.33% | File: non-dementia-08082.jpg
+[42] True: moderate   | Pred: moderate   | Conf: 74.23% | File: moderate-dementia-00912.jpg
+[43] True: very-mild  | Pred: mild       | Conf: 40.13% | File: very-mild-dementia-20819.jpg
+[44] True: very-mild  | Pred: mild       | Conf: 56.61% | File: very-mild-dementia-14491.jpg
+[45] True: non        | Pred: very-mild  | Conf: 44.40% | File: non-dementia-69252.jpg
+[46] True: very-mild  | Pred: non        | Conf: 30.64% | File: very-mild-dementia-09592.jpg
+[47] True: mild       | Pred: very-mild  | Conf: 52.78% | File: mild-dementia-14341.jpg
+[48] True: mild       | Pred: very-mild  | Conf: 36.24% | File: mild-dementia-10822.jpg
+[49] True: very-mild  | Pred: non        | Conf: 52.77% | File: very-mild-dementia-10882.jpg
+[50] True: moderate   | Pred: moderate   | Conf: 56.75% | File: moderate-dementia-09833.jpg
+[51] True: very-mild  | Pred: mild       | Conf: 49.40% | File: very-mild-dementia-20098.jpg
+[52] True: mild       | Pred: moderate   | Conf: 81.92% | File: mild-dementia-00695.jpg
+[53] True: moderate   | Pred: mild       | Conf: 61.84% | File: moderate-dementia-04624.jpg
+[54] True: moderate   | Pred: moderate   | Conf: 46.29% | File: moderate-dementia-03358.jpg
+[55] True: non        | Pred: moderate   | Conf: 34.70% | File: non-dementia-51886.jpg
+[56] True: moderate   | Pred: moderate   | Conf: 47.45% | File: moderate-dementia-04479.jpg
+[57] True: very-mild  | Pred: mild       | Conf: 37.37% | File: very-mild-dementia-04292.jpg
+[58] True: mild       | Pred: mild       | Conf: 45.80% | File: mild-dementia-06274.jpg
+[59] True: very-mild  | Pred: mild       | Conf: 42.84% | File: very-mild-dementia-16367.jpg
+[60] True: mild       | Pred: mild       | Conf: 55.91% | File: mild-dementia-08767.jpg
+[61] True: mild       | Pred: mild       | Conf: 50.92% | File: mild-dementia-01664.jpg
+[62] True: mild       | Pred: moderate   | Conf: 48.34% | File: mild-dementia-04089.jpg
+[63] True: mild       | Pred: mild       | Conf: 51.90% | File: mild-dementia-09605.jpg
+[64] True: very-mild  | Pred: mild       | Conf: 34.74% | File: very-mild-dementia-10237.jpg
+[65] True: mild       | Pred: moderate   | Conf: 45.76% | File: mild-dementia-02034.jpg
+[66] True: moderate   | Pred: moderate   | Conf: 59.11% | File: moderate-dementia-01955.jpg
+[67] True: mild       | Pred: moderate   | Conf: 59.04% | File: mild-dementia-05554.jpg
+[68] True: very-mild  | Pred: moderate   | Conf: 33.34% | File: very-mild-dementia-24290.jpg
+[69] True: mild       | Pred: mild       | Conf: 64.52% | File: mild-dementia-06129.jpg
+[70] True: mild       | Pred: moderate   | Conf: 55.06% | File: mild-dementia-01653.jpg
+[71] True: mild       | Pred: mild       | Conf: 52.44% | File: mild-dementia-11242.jpg
+[72] True: very-mild  | Pred: very-mild  | Conf: 52.51% | File: very-mild-dementia-24744.jpg
+
+
+Modelul nr 2 a fost antrenat prin efficientv2.s utilizand greutati pre-antrenate (ImageNet) si Full Fine-Tuning (fara freezing - toti parametrii deblocati).
+Acuratete pe setul de validare: aprox 97.2%
+
+Concluzii pentru acest model:
+=> performanta a crescut semnificativ comparativ cu modelul 1;
+=> modelul prezinta o incredere foarte ridicata (frecvent 100%), chiar si pe predictiile gresite (overconfidence);
+=> analiza erorilor: se observa o persistenta a confuziilor intre clasele 'very-mild' si 'non-dementia';modelul tinde sa clasifice cazurile 'very-mild' drept 'non' cu incredere maxima (False Negatives), sugerand ca trasaturile subtile ale bolii incipiente sunt inca dificil de distins de creierul sanatos, posibil exacerbat de dezechilibrul claselor;
+
+Date din  rulari pentru a incerca o clasificare:
+
+[1]  True: very-mild  | Pred: very-mild  | Conf: 99.99%  | File: very-mild-dementia-03884.jpg
+[2]  True: very-mild  | Pred: very-mild  | Conf: 99.44%  | File: very-mild-dementia-24793.jpg
+[3]  True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-04390.jpg
+[4]  True: very-mild  | Pred: non        | Conf: 100.00% | File: very-mild-dementia-18450.jpg
+[5]  True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-00662.jpg
+[6]  True: mild       | Pred: mild       | Conf: 64.52%  | File: mild-dementia-05380.jpg
+[7]  True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-08082.jpg
+[8]  True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-05527.jpg
+[9]  True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-05776.jpg
+[10] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-06092.jpg
+[11] True: very-mild  | Pred: non        | Conf: 100.00% | File: very-mild-dementia-14189.jpg
+[12] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-32624.jpg
+[13] True: non        | Pred: non        | Conf: 99.36%  | File: non-dementia-04034.jpg
+[14] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-03680.jpg
+[15] True: very-mild  | Pred: very-mild  | Conf: 99.97%  | File: very-mild-dementia-01712.jpg
+[16] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-05158.jpg
+[17] True: non        | Pred: non        | Conf: 99.81%  | File: non-dementia-06191.jpg
+[18] True: mild       | Pred: non        | Conf: 95.29%  | File: mild-dementia-06345.jpg
+[19] True: mild       | Pred: mild       | Conf: 98.27%  | File: mild-dementia-10329.jpg
+[20] True: moderate   | Pred: non        | Conf: 99.44%  | File: moderate-dementia-04401.jpg
+[21] True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-12071.jpg
+[22] True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-12123.jpg
+[23] True: non        | Pred: non        | Conf: 78.39%  | File: non-dementia-48782.jpg
+[24] True: non        | Pred: non        | Conf: 99.96%  | File: non-dementia-78613.jpg
+[25] True: very-mild  | Pred: very-mild  | Conf: 99.26%  | File: very-mild-dementia-20707.jpg
+[26] True: mild       | Pred: mild       | Conf: 99.77%  | File: mild-dementia-12757.jpg
+[27] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-06614.jpg
+[28] True: mild       | Pred: non        | Conf: 100.00% | File: mild-dementia-09285.jpg
+[29] True: mild       | Pred: non        | Conf: 94.32%  | File: mild-dementia-08698.jpg
+[30] True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-14677.jpg
+[31] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-30558.jpg
+[32] True: very-mild  | Pred: non        | Conf: 100.00% | File: very-mild-dementia-11612.jpg
+[33] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-10001.jpg
+[34] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-06546.jpg
+[35] True: non        | Pred: non        | Conf: 73.03%  | File: non-dementia-02762.jpg
+[36] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-08840.jpg
+[37] True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-13596.jpg
+[38] True: mild       | Pred: mild       | Conf: 99.81%  | File: mild-dementia-13846.jpg
+[39] True: mild       | Pred: non        | Conf: 81.88%  | File: mild-dementia-08689.jpg
+[40] True: very-mild  | Pred: very-mild  | Conf: 99.82%  | File: very-mild-dementia-23930.jpg
+[41] True: very-mild  | Pred: very-mild  | Conf: 99.97%  | File: very-mild-dementia-20879.jpg
+[42] True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-03293.jpg
+[43] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-08480.jpg
+[44] True: mild       | Pred: non        | Conf: 99.98%  | File: mild-dementia-09640.jpg
+[45] True: very-mild  | Pred: non        | Conf: 99.99%  | File: very-mild-dementia-12108.jpg
+[46] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-66769.jpg
+[47] True: mild       | Pred: non        | Conf: 100.00% | File: mild-dementia-06868.jpg
+[48] True: mild       | Pred: mild       | Conf: 97.07%  | File: mild-dementia-01310.jpg
+[49] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-08235.jpg
+[50] True: mild       | Pred: mild       | Conf: 99.91%  | File: mild-dementia-00482.jpg
+[51] True: very-mild  | Pred: non        | Conf: 99.07%  | File: very-mild-dementia-12268.jpg
+[52] True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-11148.jpg
+[53] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-06045.jpg
+[54] True: very-mild  | Pred: mild       | Conf: 99.52%  | File: very-mild-dementia-14161.jpg
+[55] True: very-mild  | Pred: very-mild  | Conf: 94.29%  | File: very-mild-dementia-02093.jpg
+[56] True: very-mild  | Pred: non        | Conf: 54.45%  | File: very-mild-dementia-16917.jpg
+[57] True: mild       | Pred: non        | Conf: 99.96%  | File: mild-dementia-05819.jpg
+[58] True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-11134.jpg
+[59] True: very-mild  | Pred: very-mild  | Conf: 99.98%  | File: very-mild-dementia-19923.jpg
+[60] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-09863.jpg
+[61] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-10186.jpg
+[62] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-08647.jpg
+[63] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-73469.jpg
+[64] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-00284.jpg
+[65] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-10388.jpg
+[66] True: very-mild  | Pred: very-mild  | Conf: 99.52%  | File: very-mild-dementia-03592.jpg
+[67] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-59163.jpg
+[68] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-55969.jpg
+[69] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-35613.jpg
+[70] True: non        | Pred: non        | Conf: 99.91%  | File: non-dementia-02571.jpg
+[71] True: moderate   | Pred: mild       | Conf: 93.26%  | File: moderate-dementia-04428.jpg
+[72] True: very-mild  | Pred: very-mild  | Conf: 99.97%  | File: very-mild-dementia-24802.jpg
+
+
+Modelul nr. 3 a fost antrenat utilizand "Partial Fine-Tuning" (deblocarea doar a ultimelor blocuri convolutionale, dupa o initializare cu greutati ImageNet). Aceasta modificare a permis o specializare mai fina a retelei.
+Scaderea constanta a loss ului, atat pe setul de antrenare, cat si pe cel de validare, indica faptul ca modelul este robust si generalizeaza bine (nu sufera de un overfitting sever)
+Acuratetea maxima a modelului a fost de 98.22%
+
+Concluzii pentru acest model:
+=> majoritatea predictiilor au scoruri de incredere foarte mari, intre 98 si 100%;
+=> clasele non-dementia, dar si moderate dementia, sunt clasificate aproape perfect;
+=> se poate observa o imbunatatire, avand in vedere faptul ca 99% dintre cazurile de eroare sunt intre clasele very mild si mild;frontiera de decizie dintre stadiile incipiente ramane dificil de separat;
+
+Date din  rulari pentru a incerca o clasificare:
+
+[1]  True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-04713.jpg
+[2]  True: very-mild  | Pred: mild       | Conf: 99.22%  | File: very-mild-dementia-19784.jpg
+[3]  True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-08903.jpg
+[4]  True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-01105.jpg
+[5]  True: mild       | Pred: mild       | Conf: 99.94%  | File: mild-dementia-06170.jpg
+[6]  True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-06417.jpg
+[7]  True: non        | Pred: non        | Conf: 98.52%  | File: non-dementia-01999.jpg
+[8]  True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-04635.jpg
+[9]  True: very-mild  | Pred: very-mild  | Conf: 98.77%  | File: very-mild-dementia-01925.jpg
+[10] True: very-mild  | Pred: non        | Conf: 100.00% | File: very-mild-dementia-14070.jpg
+[11] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-05005.jpg
+[12] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-01053.jpg
+[13] True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-10934.jpg
+[14] True: very-mild  | Pred: non        | Conf: 76.43%  | File: very-mild-dementia-13030.jpg
+[15] True: very-mild  | Pred: mild       | Conf: 71.00%  | File: very-mild-dementia-06175.jpg
+[16] True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-05324.jpg
+[17] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-01968.jpg
+[18] True: mild       | Pred: mild       | Conf: 99.97%  | File: mild-dementia-03298.jpg
+[19] True: mild       | Pred: mild       | Conf: 98.85%  | File: mild-dementia-06829.jpg
+[20] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-77540.jpg
+[21] True: very-mild  | Pred: very-mild  | Conf: 98.88%  | File: very-mild-dementia-23535.jpg
+[22] True: very-mild  | Pred: mild       | Conf: 64.82%  | File: very-mild-dementia-16314.jpg
+[23] True: very-mild  | Pred: mild       | Conf: 95.74%  | File: very-mild-dementia-08431.jpg
+[24] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-44658.jpg
+[25] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-07387.jpg
+[26] True: very-mild  | Pred: mild       | Conf: 97.59%  | File: very-mild-dementia-16264.jpg
+[27] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-06961.jpg
+[28] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-05015.jpg
+[29] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-34107.jpg
+[30] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-29510.jpg
+[31] True: mild       | Pred: mild       | Conf: 99.98%  | File: mild-dementia-10083.jpg
+[32] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-10045.jpg
+[33] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-02749.jpg
+[34] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-08624.jpg
+[35] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-06302.jpg
+[36] True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-04522.jpg
+[37] True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-02978.jpg
+[38] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-02859.jpg
+[39] True: very-mild  | Pred: very-mild  | Conf: 98.28%  | File: very-mild-dementia-01713.jpg
+[40] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-08105.jpg
+[41] True: mild       | Pred: non        | Conf: 99.99%  | File: mild-dementia-09080.jpg
+[42] True: very-mild  | Pred: very-mild  | Conf: 99.43%  | File: very-mild-dementia-20949.jpg
+[43] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-10307.jpg
+[44] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-03327.jpg
+[45] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-21707.jpg
+[46] True: very-mild  | Pred: non        | Conf: 100.00% | File: very-mild-dementia-09566.jpg
+[46] True: very-mild  | Pred: very-mild  | Conf: 79.72%  | File: very-mild-dementia-00545.jpg
+[47] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-02616.jpg
+[48] True: very-mild  | Pred: very-mild  | Conf: 100.00% | File: very-mild-dementia-20704.jpg
+[49] True: very-mild  | Pred: non        | Conf: 100.00% | File: very-mild-dementia-07014.jpg
+[50] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-01006.jpg
+[51] True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-11211.jpg
+[52] True: very-mild  | Pred: mild       | Conf: 89.36%  | File: very-mild-dementia-12274.jpg
+[53] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-00107.jpg
+[54] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-53809.jpg
+[55] True: very-mild  | Pred: very-mild  | Conf: 99.98%  | File: very-mild-dementia-01157.jpg
+[56] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-05888.jpg
+[57] True: non        | Pred: non        | Conf: 99.97%  | File: non-dementia-40971.jpg
+[58] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-08728.jpg
+[59] True: very-mild  | Pred: non        | Conf: 99.98%  | File: very-mild-dementia-06382.jpg
+[60] True: very-mild  | Pred: very-mild  | Conf: 99.74%  | File: very-mild-dementia-24435.jpg
+[61] True: very-mild  | Pred: mild       | Conf: 97.12%  | File: very-mild-dementia-14308.jpg
+[62] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-36171.jpg
+[63] True: mild       | Pred: mild       | Conf: 99.94%  | File: mild-dementia-09350.jpg
+[64] True: non        | Pred: mild       | Conf: 98.91%  | File: non-dementia-11575.jpg
+[65] True: very-mild  | Pred: non        | Conf: 91.84%  | File: very-mild-dementia-10196.jpg
+[66] True: mild       | Pred: mild       | Conf: 100.00% | File: mild-dementia-13903.jpg
+[67] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-47027.jpg
+[68] True: moderate   | Pred: moderate   | Conf: 100.00% | File: moderate-dementia-05046.jpg
+[69] True: non        | Pred: non        | Conf: 100.00% | File: non-dementia-69173.jpg
+[70] True: very-mild  | Pred: very-mild  | Conf: 90.76%  | File: very-mild-dementia-03577.jpg
+[71] True: mild       | Pred: moderate   | Conf: 99.82%  | File: mild-dementia-08026.jpg
+
